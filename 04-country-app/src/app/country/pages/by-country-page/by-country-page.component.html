@@ -1,0 +1,27 @@
+<!-- country-search-inputs -->
+
+<country-search-inputs
+ (output)="this.query.set($event)"
+ [placeholder]="placeholder()"
+ [debounceTime]="500"
+ [initialValue]="query()"
+ ></country-search-inputs>
+
+<!-- country-list -->
+
+<!-- RESOURCES -->
+<!-- @if (countryResource.error()) {
+  <h3>{{countryResource.error()}}</h3>
+ } @if(countryResource.hasValue()) {
+   countryResource.value() puede ser undefined cuando inicialmente hacemos la petición debiendo hacer un @if, en lugar de @else -->
+  <!-- <country-list [countries] = "countryResource.value()!" ></country-list> -->
+  <!-- le ponemos el ! al final para indicar de que siempre irá un country[], porque antes lo validamos en la condición del @if -->
+
+
+ <!--  -->
+ <country-list
+ [countries] = "countryResource.value() ?? []"
+ [errorMessage]="countryResource.error()"
+ [isLoading]="countryResource.isLoading()"
+ [isEmpty]="countryResource.value()?.length === 0"
+ ></country-list>

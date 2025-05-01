@@ -1,0 +1,49 @@
+1. Crear los entornos de desarrollo y producción
+ng g environments
+
+2. creamos dos archivos y dentro de cada uno ponemos el nombre de la variable de entorno con su valor en mayúsculas:
+.env y .env.template
+
+3. Para evitar que al pushear los commits se suba el codigo de las carpetas environments:
+En el archivo .gitignore  escribir el nombre de .env
+
+
+4. Instalamos dotenv de las dependencias de desarrollo
+·
+npm i -D dotenv
+
+5. Creamos un script dentro de ./scripts/set-envs.js
+
+
+// Leemos del file system
+const {writeFileSync, mkdirSync, mkdir, write} = require('fs');
+
+require('dotenv').config();
+
+const targetPath = './src/environments/environment.ts'
+const targetPathDev = './src/environments/environment.development.ts'
+const mapboxKey = process.env['MAPBOX_KEY']
+
+if(!mapboxKey) {
+  throw new Error('MAPBOX_KEY is not set in .env file')
+}
+
+const envFileContent = `
+export const environment = {
+  mapboxKey: "${ mapboxKey }",
+};
+`;
+//
+mkdirSync('./src/environments',{recursive: true});
+
+writeFileSync(targetPath, envFileContent);
+writeFileSync(targetPathDev, envFileContent);
+
+6. Ejecutamos el script con node ./scripts/set-envs.js
+
+7. Opcionalmente podemos agregar la ruta del script dentro del package.json y así evitar utilizar la instrucción anterior
+"set-envs" : "node ./scripts/set-envs.js"
+
+8. Finalmente ejecutar el comando:
+npm run set-envs
+

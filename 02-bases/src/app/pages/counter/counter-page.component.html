@@ -1,0 +1,7 @@
+<!-- Para mostrar cualquier expresión de javascript: -->
+<h1>Counter: {{ counter }}</h1>
+<h1>Counter Signal: {{ counterSignal () }}</h1>
+<!-- Los eventos se ponen entre paréntesis. Ej.: (click)="increaseBy(1)"-->
+<button (click)="increaseBy(1)">+1</button>
+<button (click)="increaseBy(-1)">-1</button>
+<button (click)="resetCounter()">Reset</button>

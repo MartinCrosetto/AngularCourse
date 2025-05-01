@@ -1,0 +1,36 @@
+<style>
+  nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #212121;
+    color: white;
+    padding: 10px;
+  }
+  nav a {
+    color: white;
+    text-decoration: none;
+  }
+  /* a cualquier elemento <a> dentro de un elemento <nav> que tenga la clase active */
+  nav a.active {
+    color: red;
+  }
+</style>
+
+<nav>
+  <!-- El counter tendrá la clase active, esto es: Agrega la clase active si nos encontramos en el path "/" (por tanto se pone en rojo debido al css)-->
+  <!-- Si agregamos routerLinkActiveOptions= "{ exact: true }" la ruta tiene que ser exactamente el path especificado para que se aplique el css -->
+  <a
+    routerLink="/"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    >Counter</a
+  >
+  <!-- Al usar corchetes en routerLink, permite navegar a rutas basadas en una expresión computada -->
+  <!-- si vamos al counter también se pone en rojo porque pasamos por el "/" es decir tenemos "/hero" (el slash se encuentra en el path) -->
+  <!-- (y por tanto se pone en rojo porque aplica el css) -->
+  <a [routerLink]="['/hero']" [routerLinkActive]="'active'">Hero</a>
+
+  <a [routerLink]="['/dragonball']" [routerLinkActive]="'active'">Dragonball</a>
+
+  <a routerLink="/dragonball-super" routerLinkActive="active">Dragonball Super</a>
+</nav>

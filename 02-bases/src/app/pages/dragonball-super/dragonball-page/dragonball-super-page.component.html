@@ -1,0 +1,26 @@
+<h1>DragonBall Super Page</h1>
+<hr />
+<section class="row">
+  <!-- OUTPUT SIGNALS -->
+  <div class="col-12 col-sm-6">
+    <dragonball-character-add
+    (newCharacter)="dragonballService.addCharacter($event)"
+    ></dragonball-character-add>
+  </div>
+  <div class="col-12 col-sm-6">
+
+    <!-- INPUT SIGNALS -->
+    <!-- <dragonball-character-list>: Este es el selector del componente hijo que se está utilizando.
+      Indica que se está incluyendo el componente DragonballCharacterListComponent dentro de la plantilla
+      del componente actual.
+
+      [characters]="characters()": Aquí se está utilizando la sintaxis de enlace de propiedades (property binding)
+      de Angular. La propiedad characters del componente hijo se está enlazando a la salida de la función characters()
+      del componente padre. Esto significa que el componente hijo recibirá los datos que devuelve la función
+      characters() como entrada.-->
+    <dragonball-character-list
+      listName="Listado de Personajes"
+      [characters]="dragonballService.characters()"
+    ></dragonball-character-list>
+  </div>
+</section>
